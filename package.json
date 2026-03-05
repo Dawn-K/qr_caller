@@ -1,0 +1,21 @@
+{
+  "name": "qr-caller",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5500",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 5500",
+    "sample:generate": "node scripts/generate-sample.mjs"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5"
+  }
+}

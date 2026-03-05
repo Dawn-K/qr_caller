@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>电话确认助手</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1 class="brand">电话确认助手</h1>
+        <div class="file-actions">
+          <button id="open-file-btn" class="btn btn-primary" type="button">授权并打开 Excel</button>
+        </div>
+        <section id="permission-explainer" class="permission-explainer">
+          <h2>为何需要文件权限</h2>
+          <p>为了把“接受/拒绝”的状态直接写回你选择的 Excel 原文件，需要申请读写权限。</p>
+          <p>你的文件只在本地浏览器处理，不会上传到任何服务器。</p>
+        </section>
+        <p id="file-name" class="file-name">未打开文件</p>
+        <nav id="status-tabs" class="status-tabs" aria-label="状态分类"></nav>
+        <p id="save-hint" class="save-hint"></p>
+      </aside>
+
+      <main class="main-content">
+        <div id="notice" class="notice" role="status" aria-live="polite"></div>
+        <section id="blocked-banner" class="blocked-banner hidden" role="alert" aria-live="assertive">
+          <div class="blocked-content">
+            <h2 id="blocked-title">需要读写权限</h2>
+            <p id="blocked-message"></p>
+          </div>
+          <button id="retry-auth-btn" class="btn btn-warning" type="button">重新授权</button>
+        </section>
+        <section id="empty-state" class="empty-state">
+          <h2 id="empty-title">请先打开 Excel 文件</h2>
+          <p id="empty-desc">支持最多 1000 行数据，需包含电话号码列。状态列默认使用“状态”。</p>
+        </section>
+
+        <section id="card-view" class="card-view hidden">
+          <button id="prev-btn" class="nav-btn" type="button">上一条</button>
+          <article class="info-card">
+            <header class="card-header">
+              <h2 id="card-title">客户信息</h2>
+              <span id="status-badge" class="status-badge">未处理</span>
+            </header>
+            <div class="qr-wrap">
+              <canvas id="qr-canvas" width="220" height="220" aria-label="电话二维码"></canvas>
+            </div>
+            <div id="phone-text" class="phone-text"></div>
+            <dl id="field-list" class="field-list"></dl>
+            <footer class="card-footer">
+              <button id="accept-btn" class="btn btn-accept" type="button">接受</button>
+              <button id="reject-btn" class="btn btn-reject" type="button">拒绝</button>
+            </footer>
+          </article>
+          <button id="next-btn" class="nav-btn" type="button">下一条</button>
+        </section>
+
+        <section id="list-view" class="list-view hidden">
+          <div class="list-header">
+            <h2 id="list-title">列表</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr id="list-head-row"></tr>
+              </thead>
+              <tbody id="list-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
